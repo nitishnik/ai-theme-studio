@@ -18,15 +18,15 @@ API keys are optional. Without a key for the selected provider, generation retur
 
 ## Environment variables
 
-| Variable | Purpose |
-| --- | --- |
-| `API_PORT` | Express port; defaults to `4000` |
-| `OPENAI_API_KEY` | OpenAI API key |
-| `OPENAI_MODEL` | Default OpenAI model; defaults to `gpt-4.1-mini` |
-| `ANTHROPIC_API_KEY` | Anthropic API key |
-| `ANTHROPIC_MODEL` | Default Claude model; defaults to `claude-sonnet-4-5` |
-| `GLM_API_KEY` | GLM API key |
-| `GLM_MODEL` | Default GLM model; defaults to `glm-4.7` |
+| Variable            | Purpose                                               |
+| ------------------- | ----------------------------------------------------- |
+| `API_PORT`          | Express port; defaults to `4000`                      |
+| `OPENAI_API_KEY`    | OpenAI API key                                        |
+| `OPENAI_MODEL`      | Default OpenAI model; defaults to `gpt-4.1-mini`      |
+| `ANTHROPIC_API_KEY` | Anthropic API key                                     |
+| `ANTHROPIC_MODEL`   | Default Claude model; defaults to `claude-sonnet-4-5` |
+| `GLM_API_KEY`       | GLM API key                                           |
+| `GLM_MODEL`         | Default GLM model; defaults to `glm-4.7`              |
 
 Keys are read only by Express. The model ID can also be overridden in the interface. Do not put keys in `NEXT_PUBLIC_*` variables.
 
@@ -41,17 +41,17 @@ The mock generator matches a small set of prompt keywords and does not understan
 
 ## Project structure
 
-| Path | Purpose |
-| --- | --- |
-| `app/` | Next.js entry page, metadata, and responsive styles |
-| `components/ThemeStudio.tsx` | Studio controls, editor, export UI, and accessibility panel |
-| `components/ThemePreview.tsx` | Four CSS-variable-driven preview templates |
-| `shared/theme.ts` | Theme and generation schemas, CSS variables, contrast checks |
-| `shared/presets.ts` | Seven validated predefined themes |
-| `shared/export.ts` | CSS, Tailwind, shadcn/ui, and JSON exporters |
-| `server/providers.ts` | OpenAI, Claude, GLM adapters and mock generator |
-| `server/app.ts` | Generate, validate, export, and health API endpoints |
-| `tests/` | Schema, contrast, and export checks |
+| Path                          | Purpose                                                      |
+| ----------------------------- | ------------------------------------------------------------ |
+| `app/`                        | Next.js entry page, metadata, and responsive styles          |
+| `components/ThemeStudio.tsx`  | Studio controls, editor, export UI, and accessibility panel  |
+| `components/ThemePreview.tsx` | Four CSS-variable-driven preview templates                   |
+| `shared/theme.ts`             | Theme and generation schemas, CSS variables, contrast checks |
+| `shared/presets.ts`           | Seven validated predefined themes                            |
+| `shared/export.ts`            | CSS, Tailwind, shadcn/ui, and JSON exporters                 |
+| `server/providers.ts`         | OpenAI, Claude, GLM adapters and mock generator              |
+| `server/app.ts`               | Generate, validate, export, and health API endpoints         |
+| `tests/`                      | Schema, contrast, and export checks                          |
 
 ## Checks and production build
 
@@ -64,3 +64,12 @@ npm start
 ```
 
 `npm start` serves the built Next.js app and Express API. The generation endpoint is limited to 10 requests per IP per minute. The app does not store prompts, themes, or API keys in a database.
+
+## Formatting and commit hooks
+
+```bash
+npm run format        # format project files
+npm run format:check  # check formatting without changing files
+```
+
+`npm install` runs Husky's `prepare` script to enable the Git pre-commit hook. On each commit, lint-staged runs ESLint and Prettier only on staged code files, and Prettier on staged data, style, and documentation files. Run `npm run lint`, `npm run typecheck`, and `npm test` for full-project checks.
